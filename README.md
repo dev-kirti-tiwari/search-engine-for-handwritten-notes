@@ -1,3 +1,13 @@
+---
+title: NotesFinder
+emoji: 🔎
+colorFrom: blue
+colorTo: yellow
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # NotesFinder
 
 Search your handwritten notes and PDFs by keyword. Upload a photo of a notebook page or a PDF, and NotesFinder reads every page with OCR, tags its topics, and lets you jump straight to the page you need.
@@ -98,6 +108,21 @@ uploads/                Uploaded files and page previews (created automatically)
 | GET | `/api/pages/<id>/image` | Page preview image |
 | GET | `/api/notes/<id>/file` | Original uploaded file |
 | GET | `/api/stats` | Counts, popular tags and OCR engine |
+
+## Deploying publicly (Hugging Face Spaces)
+
+NotesFinder needs a real server with disk space and enough memory for OCR, so it does not run on Vercel. The included `Dockerfile` is set up for Hugging Face Spaces:
+
+1. Create a free account at huggingface.co and click **New Space**.
+2. Choose **Docker** as the SDK (Blank template) and create it.
+3. Upload every project file, including `Dockerfile`, `requirements.txt`, `app.py`, `processing/`, `templates/`, `static/` and this `README.md`. Do not upload `uploads/`, `database/` or `err.txt`.
+4. The Space builds automatically (about 10 minutes the first time). Then it is live at `https://<your-username>-<space-name>.hf.space`.
+
+Things to know:
+
+- On the free tier the disk is **not persistent**. Uploaded notes disappear when the Space restarts or sleeps. For permanent storage, enable persistent storage in the Space settings (paid) and set the variable `DATA_DIR=/data`.
+- The free tier has no GPU, so OCR is slow (a few seconds per page).
+- There are no user accounts, so **everyone who visits sees all uploaded notes**. Do not put private notes on a public deployment.
 
 ## Limitations
 

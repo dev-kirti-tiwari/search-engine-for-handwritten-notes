@@ -1,7 +1,8 @@
 flask
+gunicorn
 pymupdf
 pillow
 opencv-python-headless
-# OCR engine (pick one; the app auto-detects whichever is installed)
+# OCR engine (the Dockerfile installs easyocr; locally: pip install easyocr)
 # easyocr
 # pytesseract

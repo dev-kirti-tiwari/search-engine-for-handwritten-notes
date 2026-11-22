@@ -16,8 +16,9 @@ from processing.pdf_processing import process_pdf
 from processing.tagging import generate_tags
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-UPLOADS = os.path.join(BASE, "uploads")
-DB_PATH = os.path.join(BASE, "database", "notes.db")
+DATA_DIR = os.environ.get("DATA_DIR", BASE)  # where uploads + database live (set to a persistent disk in production)
+UPLOADS = os.path.join(DATA_DIR, "uploads")
+DB_PATH = os.path.join(DATA_DIR, "database", "notes.db")
 IMG_EXT = {"jpg", "jpeg", "png"}
 ALLOWED = IMG_EXT | {"pdf"}
 DEFAULT_SUBJECTS = ["Data Structures", "Mathematics", "Operating Systems", "Computer Networks",
@@ -353,7 +354,9 @@ def _warm_ocr():
         pass
 
 
-if __name__ == "__main__":
+if os.environ.get("WARM_OCR") or __name__ == "__main__":
     import threading
     threading.Thread(target=_warm_ocr, daemon=True).start()
-    app.run(debug=False, port=5000)
+
+if __name__ == "__main__":
+    app.run(debug=False, port=int(os.environ.get("PORT", 5000)))
