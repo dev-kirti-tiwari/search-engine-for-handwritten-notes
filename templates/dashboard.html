@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · NotesFinder{% endblock %}
+{% block page %}dashboard{% endblock %}
+{% block content %}
+<div class="wrap section">
+  <div class="page-head"><h1>Dashboard</h1><p class="muted">Upload notes and manage your library.</p></div>
+
+  <div class="stats" id="stats">
+    <div class="card stat"><span>Notes</span><b id="sNotes">–</b></div>
+    <div class="card stat"><span>Pages</span><b id="sPages">–</b></div>
+    <div class="card stat"><span>Topic tags</span><b id="sTags">–</b></div>
+  </div>
+
+  <div class="two">
+    <section class="card" id="upload">
+      <h2>Upload notes</h2>
+      <form id="uploadForm">
+        <label class="drop" id="drop" for="fileInput">
+          <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.pdf" multiple hidden>
+          <span class="drop-ic">⬆</span>
+          <b id="dropText">Drop files here or click to browse</b>
+          <small>JPG, JPEG, PNG or PDF · up to 50 MB</small>
+        </label>
+        <button class="btn primary full" id="uploadBtn" disabled>Upload &amp; process</button>
+        <div class="progress" id="progress" hidden><i></i><span>Processing pages… OCR can take a while for large files.</span></div>
+      </form>
+      <p class="note" id="ocrNote"></p>
+    </section>
+
+    <section class="card">
+      <h2>Search your notes</h2>
+      <form class="searchbar" action="/results" method="get">
+        <input name="q" placeholder="Search a topic…" aria-label="Search">
+        <button class="btn primary">Search</button>
+      </form>
+      <h3 class="sub">Popular topics</h3>
+      <div class="chips" id="topTags"><span class="muted">Upload notes to see topics.</span></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <div class="row-between"><h2>Your notes</h2><input id="filterNotes" class="mini" placeholder="Filter by file name" aria-label="Filter notes"></div>
+    <div id="notesList" class="notes"></div>
+  </section>
+</div>
+{% endblock %}

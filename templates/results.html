@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Search · NotesFinder{% endblock %}
+{% block page %}results{% endblock %}
+{% block content %}
+<div class="wrap section">
+  <form class="searchbar big" id="searchForm" action="/results" method="get">
+    <input name="q" id="q" value="{{ q }}" placeholder="Search a topic or keyword…" aria-label="Search notes">
+    <select name="note" id="noteSel" aria-label="Search in"><option value="">All notes</option></select>
+    <button class="btn primary">Search</button>
+  </form>
+  <p class="muted meta" id="meta"></p>
+  <div id="resultList" class="results"></div>
+</div>
+{% endblock %}

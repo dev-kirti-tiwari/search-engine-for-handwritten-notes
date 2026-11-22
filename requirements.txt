@@ -1,0 +1,7 @@
+flask
+pymupdf
+pillow
+opencv-python-headless
+# OCR engine (pick one; the app auto-detects whichever is installed)
+# easyocr
+# pytesseract

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block page %}home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">Search handwritten notes &amp; PDFs</span>
+      <h1>Find anything you've ever written, <em>in seconds.</em></h1>
+      <p class="lead">Upload photos of your notes or PDFs. Every page is read and made searchable, so one word takes you straight to the right page.</p>
+
+      <div class="search-row">
+      <form class="searchbar big" action="/results" method="get" role="search">
+        <svg class="s-ic" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input name="q" placeholder="Search a topic or keyword…" aria-label="Search notes" autocomplete="off" autofocus>
+        <button class="btn primary">Search</button>
+      </form>
+      <a class="btn cta up-btn" href="/dashboard#upload">⬆ Upload notes</a>
+      </div>
+
+      <div class="hero-stats" id="heroStats"></div>
+    </div>
+
+    <div class="mock" aria-hidden="true">
+      <div class="mock-bar"><span></span><span></span><span></span></div>
+      <div class="mock-search">🔎 binary search</div>
+      <div class="mock-res">
+        <div class="mock-page"><i></i><i></i><i class="short"></i><i></i><i class="short"></i></div>
+        <div>
+          <b>Algorithms_Notes.pdf</b>
+          <small>Page 12 · <u>Binary Search</u> · Sorted Array</small>
+          <p>…<mark>Binary search</mark> is an efficient algorithm that works on sorted arrays…</p>
+        </div>
+      </div>
+      <div class="mock-res dim">
+        <div class="mock-page"><i></i><i class="short"></i><i></i></div>
+        <div><b>Meeting_Oct.jpg</b><small>Page 1 · Planning</small><p>…action items and deadlines for the next sprint…</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <h2 class="center-h">Made for everyone who writes things down</h2>
+  <div class="grid3">
+    <div class="card feat"><span>🎓</span><h3>Students</h3><p>Lecture notes, assignments and textbook pages — find that one formula before the exam.</p></div>
+    <div class="card feat"><span>🏫</span><h3>School &amp; teachers</h3><p>Lesson plans, worksheets and handwritten registers, all searchable in one place.</p></div>
+    <div class="card feat"><span>💼</span><h3>Office &amp; work</h3><p>Meeting notes, whiteboard photos and scanned documents — no more digging through folders.</p></div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <h2 class="center-h">Why people like it</h2>
+  <div class="grid3">
+    <div class="card feat"><span>🔒</span><h3>Private by default</h3><p>It runs on your own computer. Your notes are stored locally and never sent anywhere.</p></div>
+    <div class="card feat"><span>⚡</span><h3>Instant results</h3><p>Search across hundreds of pages and get ranked matches with your word highlighted.</p></div>
+    <div class="card feat"><span>📄</span><h3>Opens the exact page</h3><p>Jump to the original page with its number, instead of scrolling through a whole file.</p></div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="banner">
+    <div><h2>Ready to stop searching by hand?</h2><p>Add your first note — it takes less than a minute.</p></div>
+    <a class="btn cta" href="/dashboard#upload">Upload your notes</a>
+  </div>
+</section>
+{% endblock %}

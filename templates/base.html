@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}NotesFinder{% endblock %}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563eb'/%3E%3Ctext x='16' y='23' font-size='20' font-weight='700' text-anchor='middle' fill='white' font-family='Arial'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-page="{% block page %}{% endblock %}">
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><span class="logo">N</span> NotesFinder</a>
+    <nav>
+      <a href="/" class="{{ 'on' if request.path=='/' }}">Home</a>
+      <a href="/dashboard" class="{{ 'on' if request.path=='/dashboard' }}">Dashboard</a>
+      <a href="/results" class="{{ 'on' if request.path=='/results' }}">Search</a>
+    </nav>
+  </div>
+</header>
+<main>{% block content %}{% endblock %}</main>
+<footer class="foot"><div class="wrap">NotesFinder · B.Tech CSE 2nd Year Mini Project · AKTU</div></footer>
+<div id="toasts" aria-live="polite"></div>
+<div id="modal" class="modal" hidden><div class="modal-card"><button class="icon-btn modal-x" id="modalX" aria-label="Close">✕</button><div id="modalBody"></div></div></div>
+<script>window.SUBJECTS = {{ subjects|tojson }};</script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
