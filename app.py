@@ -16,7 +16,10 @@ from processing.pdf_processing import process_pdf
 from processing.tagging import generate_tags
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.environ.get("DATA_DIR", BASE)  # where uploads + database live (set to a persistent disk in production)
+if os.environ.get("VERCEL"):
+    DATA_DIR = "/tmp/notesfinder"  # Vercel's only writable (and temporary) location
+else:
+    DATA_DIR = os.environ.get("DATA_DIR", BASE)  # where uploads + database live (set to a persistent disk in production)
 UPLOADS = os.path.join(DATA_DIR, "uploads")
 DB_PATH = os.path.join(DATA_DIR, "database", "notes.db")
 IMG_EXT = {"jpg", "jpeg", "png"}

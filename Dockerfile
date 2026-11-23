@@ -18,4 +18,4 @@ COPY --chown=user . .
 ENV DATA_DIR=/home/user/app/data WARM_OCR=1 PORT=7860
 EXPOSE 7860
 # One worker: the OCR model is large and is loaded once. Threads handle concurrent requests.
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:7860", "--workers", "1", "--threads", "4", "--timeout", "900"]
+CMD ["sh", "-c", "gunicorn app:app --bind 0.0.0.0:${PORT:-7860} --workers 1 --threads 4 --timeout 900"]
